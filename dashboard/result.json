@@ -1,0 +1,7 @@
+{
+  "scramble": "B D' U' U2 ",
+  "solution": "D U' B' ",
+  "moves": 3,
+  "algorithm": "IDA*",
+  "heuristic": "Corner Pattern Database"
+}

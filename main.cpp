@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
 //    RubiksCube3dArray object3DArray;
 //    RubiksCube1dArray object1dArray;
 //    RubiksCubeBitboard objectBitboard;
@@ -262,25 +262,63 @@ int main() {
 
 
 // CornerDBMaker Testing --------------------------------------------------------------------------
-    string fileName = "C:\\Users\\user\\CLionProjects\\rubiks-cube-solver\\Databases\\cornerDepth5V1.txt";
+
+if(argc < 2) {
+    cout << "Please provide shuffle depth.\n";
+    return 1;
+}
+int shuffleDepth = stoi(argv[1]);
+
+string fileName = "Databases/cornerDepth5V1.txt";
 
 //    Code to create Corner Database
 //    CornerDBMaker dbMaker(fileName, 0x99);
 //    dbMaker.bfsAndStore();
 
-    RubiksCubeBitboard cube;
-    auto shuffleMoves = cube.randomShuffleCube(13);
-    cube.print();
-    for (auto move: shuffleMoves) cout << cube.getMove(move) << " ";
-    cout << "\n";
+RubiksCubeBitboard cube;
 
-    IDAstarSolver<RubiksCubeBitboard, HashBitboard> idaStarSolver(cube, fileName);
-    auto moves = idaStarSolver.solve();
+auto shuffleMoves = cube.randomShuffleCube(shuffleDepth);
 
-    idaStarSolver.rubiksCube.print();
-    for (auto move: moves) cout << cube.getMove(move) << " ";
-    cout << "\n";
+// Store scramble
+string scramble = "";
 
+for (auto move : shuffleMoves) {
+    scramble += cube.getMove(move);
+    scramble += " ";
+}
+
+// Solve using IDA*
+IDAstarSolver<RubiksCubeBitboard, HashBitboard> idaStarSolver(cube, fileName);
+
+auto moves = idaStarSolver.solve();
+
+// Store solution
+string solution = "";
+
+for (auto move : moves) {
+    solution += cube.getMove(move);
+    solution += " ";
+}
+
+// Structured output
+cout << "SCRAMBLE:" << scramble << "\n";
+cout << "SOLUTION:" << solution << "\n";
+cout << "MOVES:" << moves.size() << "\n";
+cout << "ALGORITHM:IDA*" << "\n";
+cout << "HEURISTIC:Corner Pattern Database" << "\n";
+
+// Generate dashboard data
+ofstream out("dashboard/result.json");
+
+out << "{\n";
+out << "  \"scramble\": \"" << scramble << "\",\n";
+out << "  \"solution\": \"" << solution << "\",\n";
+out << "  \"moves\": " << moves.size() << ",\n";
+out << "  \"algorithm\": \"IDA*\",\n";
+out << "  \"heuristic\": \"Corner Pattern Database\"\n";
+out << "}\n";
+
+out.close();
 
     return 0;
 }

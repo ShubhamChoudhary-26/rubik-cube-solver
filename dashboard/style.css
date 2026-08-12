@@ -1,0 +1,245 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+
+/* =========================
+   RUBIK'S CUBE
+   ========================= */
+
+.cube {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 40px;
+}
+
+.middle {
+    display: flex;
+    gap: 5px;
+}
+
+.face {
+    display: grid;
+    grid-template-columns: repeat(3, 45px);
+    grid-template-rows: repeat(3, 45px);
+    gap: 3px;
+}
+
+.cell {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #222;
+    border-radius: 5px;
+
+    font-weight: bold;
+    color: #111;
+}
+
+
+/* Cube Colors */
+
+.white {
+    background: white;
+}
+
+.yellow {
+    background: #ffd900;
+}
+
+.red {
+    background: #e53935;
+    color: white;
+}
+
+.green {
+    background: #43a047;
+    color: white;
+}
+
+.blue {
+    background: #1e88e5;
+    color: white;
+}
+
+.orange {
+    background: #fb8c00;
+    color: white;
+}
+
+
+/* =========================
+   INFORMATION
+   ========================= */
+
+.info {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    margin-bottom: 25px;
+}
+
+.info h2 {
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.info h2:first-child {
+    margin-top: 0;
+}
+
+
+.value-box {
+    background: #f1f3f5;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+
+    font-family: monospace;
+    font-size: 17px;
+
+    min-height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================
+   STATS
+   ========================= */
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.stat {
+    flex: 1;
+
+    background: #f1f3f5;
+
+    padding: 15px;
+
+    border-radius: 8px;
+}
+
+.label {
+    display: block;
+
+    font-size: 14px;
+
+    color: #666;
+
+    margin-bottom: 8px;
+}
+
+.value {
+    display: block;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   BUTTON
+   ========================= */
+
+button {
+    padding: 6px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #444;
+}
+
+.solve-button {
+    background: #1e88e5;
+    padding: 8px !important;
+    margin-top: 15px;
+}
+
+.reset-button {
+    background: #e53935;
+    padding: 12px 40px;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: 95%;
+    }
+
+    .face {
+        grid-template-columns: repeat(3, 30px);
+        grid-template-rows: repeat(3, 30px);
+    }
+
+    .cell {
+        width: 30px;
+        height: 30px;
+        font-size: 11px;
+    }
+
+    .stats {
+        flex-direction: column;
+    }
+
+}

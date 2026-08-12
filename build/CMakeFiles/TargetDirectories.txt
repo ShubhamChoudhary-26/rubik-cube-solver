@@ -1,0 +1,3 @@
+C:/Users/Dell G3/OneDrive/Desktop/rubiks-cube-solver/build/CMakeFiles/rubiks_cube_solver.dir
+C:/Users/Dell G3/OneDrive/Desktop/rubiks-cube-solver/build/CMakeFiles/edit_cache.dir
+C:/Users/Dell G3/OneDrive/Desktop/rubiks-cube-solver/build/CMakeFiles/rebuild_cache.dir
